@@ -1,6 +1,5 @@
 import json
 import copy
-
 from sqlalchemy import func
 from sqlalchemy import Column, Integer, BigInteger, DateTime, String, Float
 

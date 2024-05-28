@@ -5,7 +5,7 @@ from .base import BaseResponse, PageRequest
 
 
 #顾问
-class Adviser_FormBase(BaseModel):
+class AdviserFormBase(BaseModel):
     phone_number: str
     password: str
 

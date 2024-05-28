@@ -6,5 +6,5 @@ import datetime
 
 from config import config
 from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
-from dal.healux import InsightsDAL, InsightClusterDAL
+from dal.Advisor import AdvisorDAL
 
