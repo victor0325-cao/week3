@@ -5,7 +5,7 @@ from .base import BaseResponse, PageRequest
 
 
 #注册表单
-class User_FormBase(BaseModel):
+class UserFormBase(BaseModel):
     phone_number: str
     password: str
 

@@ -2,7 +2,7 @@ import json
 import copy
 
 from sqlalchemy import func
-from sqlalchemy import Column Integer, BigInteger, DateTime, String, Float, Text
+from sqlalchemy import Column, Integer, BigInteger, DateTime, String, Float, Text
 
 from .base import Base
 
@@ -18,7 +18,7 @@ class AdvisorHome(Base):
     score           = Column(Integer)
     comments        = Column(Integer)
     on_time         = Column(Float)
-    reviews         = Column(Test)
+    reviews         = Column(Text)
     complete        = Column(Integer)
-    created_at      = Column(DateTiem, default=func.now())
+    created_at      = Column(DateTime, default=func.now())
     updated_at      = Column(DateTime, default=func.now())

@@ -14,7 +14,7 @@ def create_async_mysql_engine(conf, is_slave=False):
         'mysql+aiomysql://{}:{}@{}:3025/{}?charset=utf8mb4'.format(
              conf.username,
              conf.password,
-             conf.host
+             conf.host,
              conf.db_name, 
              ),
         pool_size = int(conf.pool_size),
@@ -23,7 +23,7 @@ def create_async_mysql_engine(conf, is_slave=False):
     )
 
     return engine
-Session = sessionmaker(class_=AsyncSession, sync_session_class=RoutingSession)
+Session = sessionmaker(class_=AsyncSession)
 
 @asynccontextmanager
 async def open_session(async_session_cls=Session, commit=False):

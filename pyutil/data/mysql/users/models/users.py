@@ -17,5 +17,5 @@ class UserInfo(Base):
     bio           = Column(Text)
     about         = Column(Text)
     coin          = Column(Integer)
-    created_at    = Column(DateTime, default=Func.now())
-    updated_at    = Column(DateTime, default=Func.now())
+    created_at    = Column(DateTime, default=func.now())
+    updated_at    = Column(DateTime, default=func.now())

@@ -6,5 +6,5 @@ import datetime
 
 from config import config
 from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
-from dal.Advisor import AdvisorDAL
+from dal.advisor import AdvisorDAL
 

@@ -5,7 +5,6 @@ import logging
 import datetime
 
 from sqlalchemy import distinct, select, func, desc, tuple_, join, and_
-#from fastapi_cache.decorator import cache
 
 from ..base import BaseDAL
 from config import config
@@ -17,7 +16,7 @@ from pyutil.decorators import add_time_analysis
 
 class OrderDAL(BaseDAL):
 
-    model = Order
+    model = Creation
 
     @classmethod
     @atomicity()
@@ -41,4 +40,10 @@ class OrderDAL(BaseDAL):
             where={
                 "order_id": order_id,
             }
-            )
+        )
+
+    @classmethod
+    @add_time_analysis
+    @atomicity()
+    async def add(cls, data, session=None):
+        return await super().add(session, data)

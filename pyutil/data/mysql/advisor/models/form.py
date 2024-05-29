@@ -10,7 +10,7 @@ class AdvisorForm(Base):
 
     __tablename__   = "advisor_logon"
 
-    id              = Columb(BigInteger, primary_key=True)
+    id              = Column(BigInteger, primary_key=True)
     phone_number    = Column(String)
     password        = Column(String)
     created_at      = Column(DateTime, default=func.now())

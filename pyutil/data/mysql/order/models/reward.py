@@ -1,11 +1,11 @@
 import json
 import copy
 from sqlalchemy import func
-from sqlalchemy import Column, Integer, BigInteger, DateTime, String, Float
+from sqlalchemy import Column, Integer, BigInteger, DateTime, String, Float, Text
 
 from .base import Base
 
-class UserOrderReward(Base):
+class Reward(Base):
 
     __tablename__       = "user_order_reward"
 
@@ -14,4 +14,4 @@ class UserOrderReward(Base):
     write_review        = Column(Text)
     reward              = Column(Integer)
     created_at          = Column(DateTime, default=func.now())
-    updated_at          = Columb(DateTime, default=func.now())
+    updated_at          = Column(DateTime, default=func.now())

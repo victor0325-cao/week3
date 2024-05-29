@@ -1,4 +1,4 @@
-import josn
+import json
 import copy
 
 from sqlalchemy import func

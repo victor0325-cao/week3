@@ -1,11 +1,11 @@
 import logging
 from functools import wraps
-from contextlib import asynccontestmanager
+from contextlib import asynccontextmanager
 
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session, sessionmaker
-from sqlalchemt.sql import Update, Delete
+from sqlalchemy.sql import Update, Delete
 
 from config import config
 
@@ -25,7 +25,7 @@ def create_async_mysql_engine(conf, is_slave=False):
 
     return engine
 
-Session = sessionmaker(class_=AsyncSession, sync_session_class=RoutingSession)
+Session = sessionmaker(class_=AsyncSession)
 
 #@asynccontextmanager
 # 装饰器：定义了一个异步上下文管理器 open_session，用于异步打开会话。

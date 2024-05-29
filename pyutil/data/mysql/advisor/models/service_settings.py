@@ -2,7 +2,7 @@ import json
 import copy
 
 from sqlalchemy import func
-from sqlalchemy import Column, BigInteger, Integer, Text, DateTime
+from sqlalchemy import Column, BigInteger, Integer, Text, DateTime, String, SmallInteger
 
 from .base import Base
 

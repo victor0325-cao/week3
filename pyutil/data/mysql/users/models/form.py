@@ -1,7 +1,7 @@
-import josn
+import json
 import copy
 
-from sqlslchemy import func
+from sqlalchemy import func
 from sqlalchemy import Column, BigInteger, DateTime, String 
 
 from .base import Base
@@ -13,5 +13,5 @@ class UserForm(Base):
     id              = Column(BigInteger, primary_key=True)
     phone_number    = Column(String(100))
     password        = Column(String(100))
-    created_at      = Column(DateTime, default=Func.now())
-    updated_at      = Column(DateTime, default= Func.now())
+    created_at      = Column(DateTime, default= func.now())
+    updated_at      = Column(DateTime, default= func.now())

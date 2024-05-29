@@ -5,20 +5,20 @@ from .base import BaseResponse, PageRequest
 
 
 #顾问
-class AdviserFormBase(BaseModel):
+class AdvisorFormBase(BaseModel):
     phone_number: str
     password: str
 
-class AdviserBase(BaseModel):
+class AdvisorBase(BaseModel):
     name: str
     bio: str
     work: str
     about: str
     
-class AdviserServiceBase(BaseModel):
+class AdvisorServiceBase(BaseModel):
     id: int
     service_adjustment: str
     amount_adjustment: str
 
-class AdviserReplyBase(BaseModel):
+class AdvisorReplyBase(BaseModel):
     reply_text: str

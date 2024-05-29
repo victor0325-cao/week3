@@ -6,20 +6,25 @@ import datetime
 import copy
 from sqlalchemy import distinct, select, func, desc
 from sqlalchemy.orm.attributes import flag_modified
-from fastapi_cache.decorator import cache
 
 from ..base import BaseDAL
 from config import config
-from pyutil.data.mysql.users.models import Star
-
-from schemas.constant import *
-from schemas.exceptions import *
+from pyutil.data.mysql.users.models import UserInfo
 from pyutil.data.mysql.users.session import atomicity
+
+from schemas.exceptions import *
 from pyutil.decorators import add_time_analysis
 
 class UsersDAL(BaseDAL):
 
-    model = Users
+    model = UserInfo
+    
+    @classmethod
+    @add_time_analysis
+    @atomicity()
+    async def add(cls, data, session=None):
+        return await super().add(session, data)
+
 
     @classmethod
     @add_time_analysis

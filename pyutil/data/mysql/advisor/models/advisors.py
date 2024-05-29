@@ -6,7 +6,7 @@ from sqlalchemy import Column, BigInteger, Integer, String, Text, DateTime
 
 from .base import Base
 
-class AdvisorInfo(base):
+class AdvisorInfo(Base):
 
     __tablename__   = "advisor_info"
 
@@ -14,6 +14,6 @@ class AdvisorInfo(base):
     name            = Column(String)
     bio             = Column(Text)
     work            = Column(String)
-    about           = Columb(Text)
+    about           = Column(Text)
     created_at      = Column(DateTime, default=func.now())
     updated_at      = Column(DateTime, default=func.now())
