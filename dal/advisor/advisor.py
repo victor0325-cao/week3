@@ -5,18 +5,19 @@ import logging
 import datetime
 
 from typing import Dict
-from sqlalchemy import distinct, select, func, desc
+from sqlalchemy import distinct, select, func, desc, asc
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..base import BaseDAL
 from config import config
 
 from pyutil.data.mysql.advisor.session import atomicity
-from pyutil.data.mysql.advisor.models import AdvisorInfo
+from pyutil.data.mysql.advisor.models import *
 from pyutil.decorators import add_time_analysis
 
 class AdvisorDAL(BaseDAL):
 
-    model = AdvisorInfo
+    model  = AdvisorInfo
 
     @classmethod
     @add_time_analysis
@@ -42,20 +43,6 @@ class AdvisorDAL(BaseDAL):
 
         return advisor
     
-    @classmethod
-    @add_time_analysis
-    @atomicity()
-    async def advisor_home(cls, advisor_id, session=None):
-
-        advisor = await cls.find_one(
-            session,
-            fields="advisor_id",
-            where={
-               "advisor_id": advisor_id,
-            } 
-        )
-
-        return advisor
 
     @classmethod
     @add_time_analysis
@@ -104,6 +91,18 @@ class AdvisorDAL(BaseDAL):
 
         return user_order
 
+class AdvisorHomeDAL(BaseDAL):
+    
+    model = AdvisorHome
+
+    @classmethod
+    @add_time_analysis
+    @atomicity()
+    async def advisor_home(cls, session=AsyncSession):
+
+        advisor = select(AdvisorHome).order_by(asc(AdvisorHome.name))
+        result = await session.execute(advisor)
+        return result.scalars().all()
 
 
 

@@ -8,5 +8,5 @@ from .advisor.views import router as advisor
 api_router = APIRouter()
 
 api_router.include_router(order, prefix="/order", tags=["order"])
-api_router.include_router(users, prefix="/users", tags=["users"])
+api_router.include_router(users, prefix="/user", tags=["user"])
 api_router.include_router(advisor, prefix="/advisor", tags=["advisor"])

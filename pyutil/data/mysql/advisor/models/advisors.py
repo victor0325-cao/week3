@@ -15,5 +15,3 @@ class AdvisorInfo(Base):
     bio             = Column(Text)
     work            = Column(String)
     about           = Column(Text)
-    created_at      = Column(DateTime, default=func.now())
-    updated_at      = Column(DateTime, default=func.now())

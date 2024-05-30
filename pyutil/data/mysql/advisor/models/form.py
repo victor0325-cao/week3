@@ -13,5 +13,3 @@ class AdvisorForm(Base):
     id              = Column(BigInteger, primary_key=True)
     phone_number    = Column(String)
     password        = Column(String)
-    created_at      = Column(DateTime, default=func.now())
-    updated_at      = Column(DateTime, default=func.now())

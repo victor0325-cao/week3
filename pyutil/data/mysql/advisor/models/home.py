@@ -20,5 +20,3 @@ class AdvisorHome(Base):
     on_time         = Column(Float)
     reviews         = Column(Text)
     complete        = Column(Integer)
-    created_at      = Column(DateTime, default=func.now())
-    updated_at      = Column(DateTime, default=func.now())
