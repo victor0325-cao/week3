@@ -11,3 +11,6 @@ class WorkStatusEnum(IntEnum):
     work = 1
     idle = 2
 
+class ServiceSettingsEnum(IntEnum):
+    open = 1
+    close = 2

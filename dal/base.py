@@ -101,7 +101,7 @@ class BaseDAL:
         model = (
             await session.execute(
                 select(cls.model).where(cls.model.id == model_id)
-            )
+            ) 
         ).scalar()
 
         if not model or (hasattr(cls.model, 'is_del') and cls.model.is_del == 1):
@@ -113,7 +113,7 @@ class BaseDAL:
 
         model = model.__dict__
 
-        return model
+        return model 
 
 
     @classmethod
@@ -124,7 +124,7 @@ class BaseDAL:
         )
 
         result = (
-            await session.execute(query)
+            await session.execute(query, bind=session.get_bind(cls.model))
         ).first()
         return result
 
@@ -132,7 +132,7 @@ class BaseDAL:
     @classmethod
     async def find_all(cls, session: AsyncSession, fields: Union[str, None] = None, where:Dict = {}, sort: str = 'asc',  limit=None):
 
-        if not fields:
+        if not fields: 
             raise ValueError("Fields cannot be empty")
 
         clean_fields = cls.clean_and_validate_fields(fields)
@@ -154,7 +154,7 @@ class BaseDAL:
     @classmethod
     def clean_and_validate_fields(cls, fields: Union[str, None] = None):
         clean_fields = [field.strip() for field in fields if field.strip()]
-        return clean_fields
+        return clean_fields 
 
 
 

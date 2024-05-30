@@ -30,8 +30,8 @@ redis_client = redis.StrictRedis(host ='0.0.0.0', port=6379, decode_responses=Tr
 #订单创建
 @router.post("/create", response_model=BaseResponse)
 async def order_create(user_id: int, create:UserOrderCreateBase):
-#    await utils.OrderDAL.add(create)
-#    return BaseResponse()
+    await utils.OrderDAL.add(create)
+    return BaseResponse()
 
     user = session.query(UserEntity).filter(UserEntity.id == user_id).first()
 

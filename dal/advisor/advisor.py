@@ -6,7 +6,6 @@ import datetime
 
 from typing import Dict
 from sqlalchemy import distinct, select, func, desc, asc
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..base import BaseDAL
 from config import config
@@ -15,21 +14,25 @@ from pyutil.data.mysql.advisor.session import atomicity
 from pyutil.data.mysql.advisor.models import *
 from pyutil.decorators import add_time_analysis
 
-class AdvisorDAL(BaseDAL):
+class AdvisorlogonDAL(BaseDAL):
 
-    model  = AdvisorInfo
+    model  = AdvisorForm
 
     @classmethod
     @add_time_analysis
     @atomicity()
     async def add(cls, data, session=None):
-        return await super().add(session, data)
+        return await su per().add(session, data)
 
-    @classmethod
+class InfoUpdateDAL(BaseDAL):
+
+    model = AdvisorInfo
+
+    @classmethod 
     @add_time_analysis
     @atomicity()
     async def update_advisor(cls, advisor_id, session=None):
-        
+
         advisors =await cls.update(
             session,
             model_id = advisor_id,
@@ -38,17 +41,47 @@ class AdvisorDAL(BaseDAL):
                 "bio":bio,
                 "work":work,
                 "about":about,
-                }
+                } 
         )
 
         return advisor
-    
+
+class AdvisorHomeDAL(BaseDAL):
+
+    model = AdvisorHome
+
+    @classmethod
+    @add_time_analysis
+    @atomicity()
+    async def advisor_home(cls, session=None):
+
+        advisor = await cls.find_all(
+                session,
+                fields="name",
+            )
+
+        return advisor
+
+class TakeOrderUpdateDAL(BaseDAL):
+
+    model = AdvisorOrderStatus
+
+    @classmethod
+    @add_time_analysis
+    @atomicity()
+    async def 
+
+
+
+class ServiceUpdateDAL(BaseDAL):
+
+    model = AdvisorServiceSettings
 
     @classmethod
     @add_time_analysis
     @atomicity()
     async def update_advisor(cls, advisor_id, session=None):
-        
+
         advisor_entity = cls.update(
             session,
             model_id = advisor_id,
@@ -59,51 +92,25 @@ class AdvisorDAL(BaseDAL):
 
         return advisor_entity
 
-    @classmethod
-    @add_time_analysis
-    @atomicity()
-    async def update_service(cls, advisor_id, session=None):
-        
-        service = await cls.update(
-            session,
-            model_id = advisor_id,
-            change_info={
-                "advisor_id":advisor_id,
-            },
-            limit = 1,
-        )
 
-        return service
-    
+class ReplyUserDAL(BaseDAL):
+
+    model = AdvisorReply 
+
     @classmethod
     @add_time_analysis
     @atomicity()
     async def reply_user(cls, advisor_id, order_id, session=None):
-        
+
         user_order = await cls.add(
             session,
             fields="advisor_id,order_id",
             where={
                 "advisor_id": advisor_id,
                 "order_id": order_id,
-            }
-        )
+             }
+        ) 
 
         return user_order
-
-class AdvisorHomeDAL(BaseDAL):
-    
-    model = AdvisorHome
-
-    @classmethod
-    @add_time_analysis
-    @atomicity()
-    async def advisor_home(cls, session=AsyncSession):
-
-        advisor = select(AdvisorHome).order_by(asc(AdvisorHome.name))
-        result = await session.execute(advisor)
-        return result.scalars().all()
-
-
 
 
