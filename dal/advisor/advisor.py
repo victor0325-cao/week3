@@ -22,7 +22,7 @@ class AdvisorlogonDAL(BaseDAL):
     @add_time_analysis
     @atomicity()
     async def add(cls, data, session=None):
-        return await su per().add(session, data)
+        return await super().add(session, data)
 
 class InfoUpdateDAL(BaseDAL):
 
@@ -69,7 +69,14 @@ class TakeOrderUpdateDAL(BaseDAL):
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def 
+    async def advisor_status(cls, advisor_id, session=None):
+        advisor_entity = cls.update(
+            session,
+            model_id = advisor_id,
+            change_info={
+                "advisor_id": advisor_id,
+            }
+        )
 
 
 

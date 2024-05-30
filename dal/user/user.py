@@ -9,23 +9,24 @@ from sqlalchemy.orm.attributes import flag_modified
 
 from ..base import BaseDAL
 from config import config
-from pyutil.data.mysql.users.models import UserInfo
-from pyutil.data.mysql.users.session import atomicity
+from pyutil.data.mysql.user.models import *
+from pyutil.data.mysql.user.session import atomicity
 
 from schemas.exceptions import *
 from pyutil.decorators import add_time_analysis
 
-class UsersDAL(BaseDAL):
+class UserFormDAL(BaseDAL):
 
-    model = UserInfo
-    
+    model = UserForm
     @classmethod
     @add_time_analysis
     @atomicity()
     async def add(cls, data, session=None):
         return await super().add(session, data)
 
+class UserDAL(BaseDAL):
 
+    model = UserInfo
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -41,6 +42,9 @@ class UsersDAL(BaseDAL):
 
         return user_entity
 
+class UserListDAL(BaseDAL):
+
+    model = None
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -56,7 +60,9 @@ class UsersDAL(BaseDAL):
 
         return advisor_list
 
+class UserAdvisorHomeDAL(BaseDAL):
 
+    model = None
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -72,11 +78,13 @@ class UsersDAL(BaseDAL):
 
         return advisor_home
 
+class SaveDAL(BaseDAL):
 
+    model = Save
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def collection_advisor(cls, user_id, session=None):
+    async def save_advisor(cls, user_id, session=None):
 
         collection = await cls.update(
             session,
@@ -88,18 +96,20 @@ class UsersDAL(BaseDAL):
 
         return collection
 
+class CoinFlowDAL(BaseDAL):
 
+    model = UserCoinFlow
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def user_coin_flow(cls, user_id, coin_change, description):
+    async def user_coin_flow(cls, user_id, coin_change, description,session=None):
 
         user = await cls.update(
             session,
             fieldes = "user_id,coin_change,description",
             where={
                 "user_id": user_id,
-                "coin_change": cpin_change,
+                "coin_change": coin_change,
                 "description": description,
             }
         )

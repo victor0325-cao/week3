@@ -6,5 +6,5 @@ import datetime
 
 from config import config
 from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
-from dal.users import UsersDAL
+from dal.user import *
 
