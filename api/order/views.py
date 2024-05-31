@@ -14,7 +14,7 @@ from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
 from schemas.order import *
 
 from pyutil.time import time
-from pyutil.data.redis import make_redis
+#from pyutil.data.redis import make_redis
 from api.auth import verify_secret
 
 from . import utils
@@ -72,8 +72,8 @@ async def order_list():
 async def order_details():
     order = await utils.OrdedrDetailsDAL.order_details()
 
-    cache_key = f"user_order_details:{phone_number}"
-    cached_results = redis_cli.get(cache_key)
+#    cache_key = f"user_order_details:{phone_number}"
+#    cached_results = redis_cli.get(cache_key)
     if cached_results:
         return json.loads(cached_results)
     

@@ -7,4 +7,4 @@ import datetime
 from config import config
 from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
 from dal.order import *
-from dal.user import UserDAL, CoinFlowDAL
+from dal.user import UserDAL

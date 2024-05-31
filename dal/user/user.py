@@ -44,7 +44,7 @@ class UserDAL(BaseDAL):
 
         return user_entity
 
-    @clsssmethod
+    @classmethod
     @add_time_analysis
     @atomicity()
     async def user(cls, user_id, session=None):

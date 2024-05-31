@@ -10,6 +10,9 @@ from sqlalchemy.sql import Update, Delete
 from config import config
 
 def create_async_mysql_engine(conf, is_slave=False):
+    if conf is None or not hasattr(conf, 'username'):
+        # 处理 conf 为 None 或无 'username' 属性的情况
+        raise ValueError("Conf 对象为 None 或缺少 'username' 属性")
     engine = create_async_engine(
         'mysql+aiomysql://{}:{}@{}:{}/{}?charset=utf8mb4'.format(
              conf.username,
@@ -26,18 +29,18 @@ def create_async_mysql_engine(conf, is_slave=False):
     return engine
 
 engines = {
-    'master': create _async_mysql_engine(config.messages),
-    'slave':  create_async_mysql_engine(config.messages, is_slave=True)
+    'master':create_async_mysql_engine(config.messages),
+    'slave':create_async_mysql_engine(config.messages, is_slave=True)
 }
 
 class RoutingSession(Session):
     def get_bind(self, mapper=None, clause=None):
         if self._flushing or isinstance(clause, (Update, Delete)):
             logging.debug('use master engine')
-            return eng ines['master'].sync_engine
+            return engines['master'].sync_engine
         else:
             logging.debug('use slave engine')
-            return en gines['slave'].sync_engine
+            return engines['slave'].sync_engine
 
 
 Session = sessionmaker(class_=AsyncSession, sync_session_class=RoutingSession)
