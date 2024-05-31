@@ -26,7 +26,6 @@ class OrderCreateDAL(BaseDAL):
     async def add(cls, data, session=None):
         return await super().add(session, data)
 
-
 class OrderListDAL(BaseDAL):
 
     model = None

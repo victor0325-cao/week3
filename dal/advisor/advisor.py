@@ -14,6 +14,8 @@ from pyutil.data.mysql.advisor.session import atomicity
 from pyutil.data.mysql.advisor.models import *
 from pyutil.decorators import add_time_analysis
 
+
+
 class AdvisorlogonDAL(BaseDAL):
 
     model  = AdvisorForm
@@ -26,22 +28,22 @@ class AdvisorlogonDAL(BaseDAL):
 
 class InfoUpdateDAL(BaseDAL):
 
-    model = AdvisorInfo
+    model = AdvisorInfo  
 
     @classmethod 
     @add_time_analysis
     @atomicity()
-    async def update_advisor(cls, advisor_id, session=None):
+    async def update_advisor(cls, advisor_id,name=None,bio=None,work=None,about=None, session=None):
 
         advisors =await cls.update(
-            session,
+            session, 
             model_id = advisor_id,
             change_info = {
                 "name":name,
                 "bio":bio,
                 "work":work,
                 "about":about,
-                } 
+            } 
         )
 
         return advisor
@@ -54,17 +56,17 @@ class AdvisorHomeDAL(BaseDAL):
     @add_time_analysis
     @atomicity()
     async def advisor_home(cls, session=None):
-
+    
         advisor = await cls.find_all(
                 session,
                 fields="name",
-            )
+             )
 
         return advisor
 
 class TakeOrderUpdateDAL(BaseDAL):
 
-    model = AdvisorOrderStatus
+    model = AdvisorOrderStatus 
 
     @classmethod
     @add_time_analysis
@@ -78,7 +80,7 @@ class TakeOrderUpdateDAL(BaseDAL):
             }
         )
 
-
+        return advisor_entity
 
 class ServiceUpdateDAL(BaseDAL):
 
@@ -87,7 +89,7 @@ class ServiceUpdateDAL(BaseDAL):
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def update_advisor(cls, advisor_id, session=None):
+    async def update_advisor(cls, advisor_id, session=SessionDep):
 
         advisor_entity = cls.update(
             session,
@@ -99,25 +101,5 @@ class ServiceUpdateDAL(BaseDAL):
 
         return advisor_entity
 
-
-class ReplyUserDAL(BaseDAL):
-
-    model = AdvisorReply 
-
-    @classmethod
-    @add_time_analysis
-    @atomicity()
-    async def reply_user(cls, advisor_id, order_id, session=None):
-
-        user_order = await cls.add(
-            session,
-            fields="advisor_id,order_id",
-            where={
-                "advisor_id": advisor_id,
-                "order_id": order_id,
-             }
-        ) 
-
-        return user_order
 
 

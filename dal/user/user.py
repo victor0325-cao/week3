@@ -18,6 +18,7 @@ from pyutil.decorators import add_time_analysis
 class UserFormDAL(BaseDAL):
 
     model = UserForm
+    
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -27,6 +28,7 @@ class UserFormDAL(BaseDAL):
 class UserDAL(BaseDAL):
 
     model = UserInfo
+    
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -42,9 +44,20 @@ class UserDAL(BaseDAL):
 
         return user_entity
 
+    @clsssmethod
+    @add_time_analysis
+    @atomicity()
+    async def user(cls, user_id, session=None):
+
+        user = await cls.find_one(
+            session,
+            fiedes="user_id",
+        )
+
 class UserListDAL(BaseDAL):
 
     model = None
+
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -63,6 +76,7 @@ class UserListDAL(BaseDAL):
 class UserAdvisorHomeDAL(BaseDAL):
 
     model = None
+
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -81,6 +95,7 @@ class UserAdvisorHomeDAL(BaseDAL):
 class SaveDAL(BaseDAL):
 
     model = Save
+
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -99,6 +114,7 @@ class SaveDAL(BaseDAL):
 class CoinFlowDAL(BaseDAL):
 
     model = UserCoinFlow
+
     @classmethod
     @add_time_analysis
     @atomicity()

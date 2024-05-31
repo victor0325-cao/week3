@@ -65,7 +65,7 @@ async def reply_user(advisor_id: int, order_id: str, reply: AdvisorReplyBase):
 #顾问端：用户金币
 @router.post("/user_coin_flow")
 async def user_coin_flow(user_id: int,coin_change: int, description: str ):
-    user = await utils.UserDal.user_coin_flow(user_id, coin_change, description)
+    user = await utils.CoinFlowDal.user_coin_flow(user_id, coin_change, description)
     
     if not user:
         raise HTTPException(status_code=404, detail="User not found")

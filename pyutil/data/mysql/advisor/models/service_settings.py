@@ -2,7 +2,7 @@ import json
 import copy
 
 from sqlalchemy import func
-from sqlalchemy import Column, BigInteger, Integer, Text, DateTime, String, SmallInteger, ForeignKey
+from sqlalchemy import Column, BigInteger, Integer, Text, DateTime, String, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .base import Base
@@ -15,4 +15,4 @@ class AdvisorServiceSettings(Base):
     advisor_id          = Column(Integer, ForeignKey('advisor_info.id'))
     advisor_data        = relationship("AdvisorInfo")
     amount_adjustment   = Column(String)
-    service_adjustment  = Column(SmallInteger)
+    service_adjustment  = Column(Enum( 'open','close'))

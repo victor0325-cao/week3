@@ -2,7 +2,7 @@ import json
 import copy
   
 from sqlalchemy import func, ForeignKey
-from sqlalchemy import Column, BigInteger, Integer, String, Text, SmallInteger, DateTime
+from sqlalchemy import Column, BigInteger, Integer, String, Text, Enum, DateTime
 from sqlalchemy.orm import relationship
 
 from pyutil.data.mysql.order.models.base import Base
@@ -20,5 +20,5 @@ class Creation(Base):
     order_id            = Column(Integer)
     order_time          = Column(String)
     delivery_time       = Column(String)
-    status              = Column(SmallInteger, default=0)
+    status              = Column(Enum( 'Pending', 'Expired', 'Completed', 'Expedited', 'Timeout'))
 

@@ -2,7 +2,7 @@ import json
 import copy
 
 from sqlalchemy import func
-from sqlalchemy import Column, BigInteger, String, Integer, SmallInteger, DateTime, ForeignKey
+from sqlalchemy import Column, BigInteger, String, Integer, Enum, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .base import Base
@@ -15,4 +15,5 @@ class AdvisorOrderStatus(Base):
     advisor_home_id = Column(Integer,ForeignKey('adviser_home.id'))
     adviser_home_data = relationship("AdviserHome")
     name            = Column(String)
-    status          = Column(SmallInteger)
+    order_status    = Column(Enum('work','idle'))
+
