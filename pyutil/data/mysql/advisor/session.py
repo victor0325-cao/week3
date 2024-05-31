@@ -18,7 +18,7 @@ def create_async_mysql_engine(conf, is_slave=False):
              conf.username,
              conf.password,
              conf.host_slave if is_slave else conf.host_master,
-             conf.port,
+             int(conf.port),
              conf.db_name, 
              ),
         pool_size = int(conf.pool_size),
@@ -29,8 +29,8 @@ def create_async_mysql_engine(conf, is_slave=False):
     return engine
 
 engines = {
-    'master':create_async_mysql_engine(config.messages),
-    'slave':create_async_mysql_engine(config.messages, is_slave=True)
+    'master':create_async_mysql_engine(config.week3),
+    'slave':create_async_mysql_engine(config.week3, is_slave=True)
 }
 
 class RoutingSession(Session):

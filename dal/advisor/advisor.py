@@ -57,7 +57,7 @@ class AdvisorHomeDAL(BaseDAL):
     @atomicity()
     async def advisor_home(cls, session=None):
     
-        advisor = await cls.find_all(
+        advisor =  cls.find_all(
                 session,
                 fields="name",
              )
@@ -89,7 +89,7 @@ class ServiceUpdateDAL(BaseDAL):
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def update_advisor(cls, advisor_id, session=SessionDep):
+    async def update_advisor(cls, advisor_id, session=None):
 
         advisor_entity = cls.update(
             session,

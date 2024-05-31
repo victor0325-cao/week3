@@ -1,9 +1,8 @@
-from .advisor import AdvisorHomeDAL,AdvisorlogonDAL,ReplyUserDAL,InfoUpdateDAL,ServiceUpdateDAL,TakeOrderUpdateDAL
+from .advisor import AdvisorHomeDAL,AdvisorlogonDAL,InfoUpdateDAL,ServiceUpdateDAL,TakeOrderUpdateDAL
 
 __all__ = [
-    "AdvisorHomeDAL",
+    "AdvisorHomeDAL", 
     "AdvisorlogonDAL",
-    "ReplyUserDAL",
     "InfoUpdateDAL",
     "ServiceUpdateDAL",
     "TakeOrderUpdateDAL"
