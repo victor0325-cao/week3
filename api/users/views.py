@@ -47,8 +47,8 @@ async def user_advisor_list():
 
 #显示顾问主页
 @router.get("/advisor/home/")
-async def user_advisor_home(adviser_id: str):
-    result = await utils.UserAdvisorHomeDAL.user_advisor_home(adviser_id)
+async def user_advisor_home(advisor_id: str):
+    result = await utils.UserAdvisorHomeDAL.user_advisor_home(advisor_id)
     return result
 
 

@@ -4,6 +4,8 @@ import asyncio
 import logging
 import datetime
 import copy
+from typing import Dict
+
 from sqlalchemy import distinct, select, func, desc
 from sqlalchemy.orm.attributes import flag_modified
 from datetime import datetime
@@ -70,13 +72,12 @@ class UserAdvisorHomeDAL(BaseDAL):
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def user_advisor_home(cls, adviser_id, session=None):
-
+    async def user_advisor_home(cls, advisor_id, session=None):
         advisor_home = await cls.find_one(
             session,
             fields="name,bio,work,about",
             where={
-                "advisor_id": adviser_id,
+                "id": advisor_id,
             }
         )
         return advisor_home

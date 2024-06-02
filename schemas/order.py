@@ -1,7 +1,7 @@
 import datetime
 from enum import IntEnum
 from pydantic import BaseModel, Json
-from .base import BaseResponse, PageRequest
+from .base import BaseResponse
 
 class UserOrderCreateBase(BaseModel):
     general_situation: str
