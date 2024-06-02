@@ -4,7 +4,7 @@ import copy
 from sqlalchemy import func
 from sqlalchemy import Column, BigInteger, DateTime, String, Integer, Text
 
-from .base import Base 
+from pyutil.data.mysql.week3.models.base import Base
 
 class UserInfo(Base):
     

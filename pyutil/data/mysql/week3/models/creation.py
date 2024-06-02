@@ -1,19 +1,17 @@
-import json
-import copy
-  
-from sqlalchemy import func, ForeignKey
-from sqlalchemy import Column, BigInteger, Integer, String, Text, Enum, DateTime
+from sqlalchemy import ForeignKey
+from sqlalchemy import Column, BigInteger, Integer, String, Text, Enum
 from sqlalchemy.orm import relationship
 
-from pyutil.data.mysql.order.models.base import Base
-  
+from pyutil.data.mysql.week3.models.base import Base
+
+
 class Creation(Base):
  
     __tablename__       = "user_order_creation"
  
     id                  = Column(BigInteger, primary_key=True)
     user_id             = Column(Integer, ForeignKey('user_info.id'))
-    user_data           = relationship("UserEntity")
+    user_data           = relationship("UserInfo")
     general_situation   = Column(Text)
     specific_question   = Column(Text)
     attach_picture      = Column(String)

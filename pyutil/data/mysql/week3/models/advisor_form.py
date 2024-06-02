@@ -1,14 +1,13 @@
 import json
 import copy
 
-from sqlalchemy import func
-from sqlalchemy import Column, Integer, BigInteger, String, DateTime
+from sqlalchemy import Column, BigInteger, String
 
 from .base import Base
 
 class AdvisorForm(Base):
 
-    __tablename__   = "advisor_logon"
+    __tablename__   = "adviser_logon"
 
     id              = Column(BigInteger, primary_key=True)
     phone_number    = Column(String)

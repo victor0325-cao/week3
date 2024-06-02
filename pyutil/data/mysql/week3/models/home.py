@@ -1,14 +1,13 @@
 import json
 import copy
 
-from sqlalchemy import func
-from sqlalchemy import Column, Integer, BigInteger, DateTime, String, Float, Text
+from sqlalchemy import Column, Integer, BigInteger, String, Float, Text
 
 from .base import Base
 
 class AdvisorHome(Base):
 
-    __tablename__   = "advisor_home"
+    __tablename__   = "adviser_home"
 
     id              = Column(BigInteger, primary_key=True)
     name            = Column(String)
