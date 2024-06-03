@@ -16,6 +16,7 @@ from pyutil.decorators import add_time_analysis
 
 
 class AdvisorlogonDAL(BaseDAL):
+    
     model = AdvisorForm
 
     @classmethod
@@ -26,6 +27,7 @@ class AdvisorlogonDAL(BaseDAL):
 
 
 class InfoUpdateDAL(BaseDAL):
+    
     model = AdvisorInfo
 
     @classmethod
@@ -36,6 +38,7 @@ class InfoUpdateDAL(BaseDAL):
 
 
 class AdvisorHomeDAL(BaseDAL):
+    
     model = AdvisorHome
 
     @classmethod
@@ -50,11 +53,10 @@ class AdvisorHomeDAL(BaseDAL):
 
 
 class TakeOrderUpdateDAL(BaseDAL):
+    
     model = AdvisorOrderStatus
 
-    @classmethod
-    @add_time_analysis
-    @atomicity()
+
     @classmethod
     @add_time_analysis
     @atomicity()
@@ -63,6 +65,7 @@ class TakeOrderUpdateDAL(BaseDAL):
 
 
 class ServiceUpdateDAL(BaseDAL):
+    
     model = AdvisorServiceSettings
 
     @classmethod
@@ -73,11 +76,11 @@ class ServiceUpdateDAL(BaseDAL):
 
 
 class AdvisorReplyDAL(BaseDAL):
+    
     model = AdvisorReply
 
     @classmethod
     @add_time_analysis
     @atomicity()
     async def reply_user(cls, new_reply, session=None):
-
        return await super().add(session, new_reply)

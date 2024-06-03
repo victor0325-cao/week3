@@ -12,8 +12,9 @@ from config import config
 from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
 from schemas.order import *
 
+
 from pyutil.time import time
-from pyutil.time.random_number import generate_number
+from schemas.random_number import generate_number
 #from pyutil.data.redis import make_redis
 from api.auth import verify_secret
 
