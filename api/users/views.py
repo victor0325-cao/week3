@@ -50,8 +50,8 @@ async def create_user(create: UserFormBase):
 
 #信息修改
 @router.put("/info")
-async def update_user(user_id: int, user: UserBase):
-    return await utils.UserDAL.update_user(user_id, user.dict())
+async def update_user( user: UserBase):
+    return await utils.UserDAL.update_user(user.dict())
 
 
 
@@ -72,19 +72,18 @@ async def user_advisor_home(advisor_id: str):
 #收藏顾问
 @router.post("/advisor/save")
 async def save_adviser(user_id: str, adviser_id: str):
-    user_save = { 
-        'user_id': user_id,
+    user_save = {
+        'user_id':user_id,
         'adviser_id': adviser_id
     }
-    return await utils.UseraveDAL.save_advisor(user_save)
+    return await utils.UserSaveDAL.save_advisor(user_save)
 
 
 #用户流水
 @router.post("/coins")
-async def user_coin_flow(user_id: int, coin_change: int, description: str):
+async def user_coin_flow( coin_change: int, description: str):
     current_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     coin_flow ={
-        'user_id': user_id,
         'coin_change': coin_change,
         'description': description,
         'timestamp': current_timestamp

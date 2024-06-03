@@ -29,10 +29,7 @@ router = APIRouter(
 
 #订单创建
 @router.post("/create")
-async def order_create(
-    id: int,
-    create: UserOrderCreateBase
-):
+async def order_create(create: UserOrderCreateBase):
     general_situation = create.general_situation
     specific_question = create.specific_question
     attach_picture = create.attach_picture
@@ -44,7 +41,6 @@ async def order_create(
 #    delivery_time = datetime.datetime.now() + datetime.timwdelta(hours=24)
 
     new_order = {
-        'user_id': id,
         'general_situation': general_situation,
         'specific_question': specific_question,
         'attach_picture': attach_picture,

@@ -9,7 +9,7 @@ from pyutil.data.mysql.week3.models.base import Base
   
 class UserSave(Base):
 
-    __tablename__   = "user_save_adviser"
+    __tablename__   = "user_collection_adviser"
 
     id              = Column(BigInteger, primary_key =True)
     user_id         = Column(Integer, ForeignKey('user_info.id'))

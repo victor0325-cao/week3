@@ -25,8 +25,8 @@ class UserDAL(BaseDAL):
     @classmethod
     @add_time_analysis
     @atomicity()
-    async def update_user(cls, user_id, user, session=None):
-        return await super().update(session, user_id, user)
+    async def update_user(cls, user, session=None):
+        return await super().update(session, user)
 
     @classmethod
     @add_time_analysis
