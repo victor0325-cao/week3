@@ -41,7 +41,7 @@ async def update_advisor(advisor_id: int, advisor: AdvisorBase):
 #显示信息
 @router.get("/home")
 async def advisor_home():
-   return await utils.AdvisorHomeDAL.advisor_home()
+   return await utils.AdvisorHomeDAL.get_advisor_home()
 
 
 
@@ -53,14 +53,14 @@ async def update_advisor(advisor_id: int, advisor: AdviserOrderBase):
 
 
 #顾问服务状态打开，关闭，金额调整
-@router.post("/home/service_settings")
+@router.post("/home/service")
 async def update_service(advisor_id: int, service: AdvisorServiceBase):
     service = await utils.ServiceUpdateDAL.update_service(advisor_id, service.dict())
     return {"data": service}
 
 
 #回复用户
-@router.post("/reply_user")
+@router.post("/user/reply")
 async def reply_user(adviser_id: int, order_id: str, reply: AdvisorReplyBase):
 
     new_reply = {
@@ -72,14 +72,15 @@ async def reply_user(adviser_id: int, order_id: str, reply: AdvisorReplyBase):
 
 
 #顾问端：用户金币
-@router.post("/user_coin_flow")
+@router.post("/coins")
 async def user_coin_flow(user_id: int, coin_change: int, description: str):
     current_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    coin_flow = [{
+#    current_timestamp = datatime.datetime.now()
+    coin_flow = {
         'user_id': user_id,
         'coin_change': coin_change,
         'description': description,
         'timestamp': current_timestamp
-    }]
-    user = await utils.CoinFlowDAL.user_coin_flow(coin_flow[0])
+    }
+    user = await utils.CoinFlowDAL.user_coins(coin_flow)
     return user

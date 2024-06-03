@@ -9,7 +9,7 @@ from .reward import Reward
 from .reply import AdvisorReply
 from .service_settings import AdvisorServiceSettings
 from .user_form import UserForm
-from .save import Save
+from .save import UserSave
 
 __all__ = [
     "AdvisorInfo",
@@ -23,6 +23,6 @@ __all__ = [
     "AdvisorReply",
     "AdvisorServiceSettings",
     "UserForm",
-    "Save"
+    "UserSave"
 ]
 

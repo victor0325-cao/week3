@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 
 from pyutil.data.mysql.week3.models.base import Base
   
-class Save(Base):
+class UserSave(Base):
 
     __tablename__   = "user_save_adviser"
 

@@ -32,13 +32,16 @@ router = APIRouter(
 async def order_create(
     id: int,
     create: UserOrderCreateBase
-    ):
+):
     general_situation = create.general_situation
     specific_question = create.specific_question
     attach_picture = create.attach_picture
 
     order_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     delivery_time = (datetime.datetime.now() + datetime.timedelta(hours=24)).strftime('%Y-%m-%d %H:%M:%S')
+
+#    order_time = datetime.datetime.now()
+#    delivery_time = datetime.datetime.now() + datetime.timwdelta(hours=24)
 
     new_order = {
         'user_id': id,

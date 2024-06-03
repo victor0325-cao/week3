@@ -6,5 +6,5 @@ import datetime
 
 from config import config
 from schemas.exceptions import ParamInvalid, AuthInvalid, ServerError
-from dal.order import *
-from dal.user import UserDAL
+from dal.week3.order import *
+from dal.week3.user import UserDAL
